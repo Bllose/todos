@@ -20,6 +20,8 @@
 </template>
 
 <script>
+  import "./assets/css/base.css"
+  import "./assets/css/app.css"
 export default {
   name: "app"
 };
