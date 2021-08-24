@@ -1,5 +1,5 @@
 # todos
-Wails with vue. Tutorial about an todos app.  
+Wails with vue. An example, for tutorial, about an todos app.  
 
 # vue basic
 
