@@ -1,2 +1,2 @@
 # todos
-Wails by vue. Tutorial about an todo app.
+Wails with vue. Tutorial about an todos app.
