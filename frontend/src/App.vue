@@ -26,7 +26,11 @@
                             <label @dblclick="editTodo(todo)" >{{ todo.title }}</label>
                             <button class="destroy" @click="removeTodo(todo)"></button>
                         </div>
-                        <input class = "edit" type="text" v-model="todo.title">
+                        <input class = "edit" type="text" v-model="todo.title" 
+                                                          @keyup.enter="doneEdit(todo)" 
+                                                          @blur="doneEdit(todo)"
+                                                          v-todo-focus="todo == editedTodo"
+                                                          >
                     </li>
                 </ul>
             </section>
@@ -44,8 +48,15 @@
             return {
                 // 用来保存新增加的任务信息， 从页面顶部的 input 标签中获取
                 newTodo: "",
-                editedTod: null,
+                editedTodo: null,
                 todos: [{id: 0, title: "My test todo item", completed: false}],
+            }
+        },
+        directives: {
+            "todo-focus": function(el, binding) {
+                if (binding.value) {
+                    el.focus();
+                }
             }
         },
         methods: {
@@ -71,6 +82,16 @@
             },
             editTodo: function(todo) {
                 this.editedTodo = todo;
+            },
+            doneEdit: function(todo) {
+                if (!this.editedTodo) {
+                    return;
+                }
+                this.editedTodo = null;
+                todo.title = todo.title.trim();
+                if (!todo.title) {
+                    this.removeTodo(todo);
+                }
             }
         }
     };
