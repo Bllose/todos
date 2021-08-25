@@ -19,12 +19,14 @@
                         未完成时标签为 <li class="todo">
                         完成时标签变为 <li class="todo completed">
                     -->
-                    <li class="todo" v-for="todo in todos" :key="todo.id" :class="{completed: todo.completed}">
+                    <li class="todo" v-for="todo in todos" :key="todo.id"
+                        :class="{completed: todo.completed, editing: todo == editedTodo}">
                         <div class="view">
                             <input class="toggle" type="checkbox" v-model="todo.completed">
-                            <label>{{ todo.title }}</label>
+                            <label @dblclick="editTodo(todo)" >{{ todo.title }}</label>
                             <button class="destroy" @click="removeTodo(todo)"></button>
                         </div>
+                        <input class = "edit" type="text" v-model="todo.title">
                     </li>
                 </ul>
             </section>
@@ -42,6 +44,7 @@
             return {
                 // 用来保存新增加的任务信息， 从页面顶部的 input 标签中获取
                 newTodo: "",
+                editedTod: null,
                 todos: [{id: 0, title: "My test todo item", completed: false}],
             }
         },
@@ -65,6 +68,9 @@
                 for(var i = 0 ; i < this.todos.length; i ++){
                     this.todos[i].id = i;
                 }
+            },
+            editTodo: function(todo) {
+                this.editedTodo = todo;
             }
         }
     };
