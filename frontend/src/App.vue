@@ -40,6 +40,7 @@
         name: "app",
         data() {
             return {
+                // 用来保存新增加的任务信息， 从页面顶部的 input 标签中获取
                 newTodo: "",
                 todos: [{id: 0, title: "My test todo item", completed: false}],
             }
@@ -55,11 +56,11 @@
                     title: value,
                     completed: false
                 });
-                // 用来保存新增加的任务信息， 从页面顶部的 input 标签中获取
                 this.newTodo = "";
             },
             removeTodo: function(todo) {
                 var index = this.todos.indexOf(todo);
+                // splice 衔接， 将数组的两部分重新衔接到一起， 即将中间部分删除。  PS: split 分割
                 this.todos.splice(index, 1);
                 for(var i = 0 ; i < this.todos.length; i ++){
                     this.todos[i].id = i;
