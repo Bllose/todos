@@ -3,6 +3,13 @@ Wails with vue. An example, for tutorial, about an todos app.
 
 # vue basic
 
+```
+...\todos-main> wails build
+...\todos-main> wails serve
+...\todos-main> cd frontend
+...\todos-main\frontend> npm run serve
+```
+
 ## Project setup
 
 ```
